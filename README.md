@@ -1,4 +1,4 @@
-# Warta News App - Starter Project
+# Warta News App - Starter Project (masih Cloningan)
 
 Selamat datang di repositori Starter untuk pembuatan aplikasi **Warta**. Proyek ini digunakan sebagai _Project-Based Learning_ (PBL) bagi siswi SMK untuk mempelajari pembuatan aplikasi dengan framework Flutter.
 
