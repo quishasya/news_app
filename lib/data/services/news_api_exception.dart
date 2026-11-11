@@ -21,13 +21,13 @@ class NewsApiException implements Exception {
   static const serviceUnavailable = NewsApiException(
     'Berita belum bisa ditampilkan',
     'Kami sedang mengalami kendala saat menghubungi layanan berita. '
-        'Coba lagi nanti ya.',
+    'Coba lagi nanti ya.',
   );
 
   static const tooManyRequests = NewsApiException(
     'Lagi ramai nih',
     'Terlalu banyak permintaan dalam waktu singkat. '
-        'Istirahat sebentar, lalu coba lagi.',
+    'Istirahat sebentar, lalu coba lagi.',
   );
 
   static const serverBusy = NewsApiException(

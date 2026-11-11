@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/providers/search_provider.dart';
 
 /// TODO: Ubah SearchInput menjadi ConsumerStatefulWidget
-class SearchInput extends StatefulWidget {
+class SearchInput extends ConsumerStatefulWidget {
   const SearchInput({super.key});
 
   @override
-  State<SearchInput> createState() => _SearchInputState();
+  ConsumerState<SearchInput> createState() => _SearchInputState();
 }
 
-class _SearchInputState extends State<SearchInput> {
+class _SearchInputState extends ConsumerState<SearchInput> {
   final _controller = TextEditingController();
 
   @override
@@ -19,15 +21,19 @@ class _SearchInputState extends State<SearchInput> {
 
   void _clear() {
     _controller.clear();
-    // TODO: Hapus query dari searchQueryProvider
+    ref.read(searchQueryProvider.notifier).clear();
+    // Hapus query dari searchQueryProvider
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Dengarkan perubahan searchQueryProvider dari luar
-    // ref.listen(searchQueryProvider, (_, next) {
-    //   if (_controller.text != next) _controller.text = next;
-    // });
+    // TODO: Dengarkan perubahan searchQueryProvider dari luar (misal: saat klik topik rekomendasi)
+    ref.listen(searchQueryProvider, (_, next) {
+      if (_controller.text != next) _controller.text = next;
+      _controller.selection = TextSelection.fromPosition(
+        TextPosition(offset: _controller.text.length) // membaca pilihan kita dari chip sebagai text
+      );
+    });
     final scheme = Theme.of(context).colorScheme;
 
     return SearchBar(
@@ -41,7 +47,8 @@ class _SearchInputState extends State<SearchInput> {
       leading: const Icon(Icons.search_rounded),
       textInputAction: TextInputAction.search,
       onSubmitted: (value) {
-        // TODO: Simpan value ke searchQueryProvider
+        // Simpan value ke searchQueryProvider
+        ref.read(searchQueryProvider.notifier).submit(value);
       },
       trailing: [
         ListenableBuilder(

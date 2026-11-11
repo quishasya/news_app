@@ -3,6 +3,16 @@
 // 2. Implementasikan fungsi setIndex(int index) untuk mengubah state
 // 3. Buat navigationProvider (NotifierProvider) untuk digunakan di BottomNavigationBar
 
-class NavigationNotifier {
-  // Siswi akan membuat Notifier untuk Riverpod
+// Index untuk tab yang aktif pada bottomNavBar
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class NavigationNotifier extends Notifier<int>{
+  @override
+  int build() => 0;
+
+  void select(int index) => state = index;
 }
+
+final navigationProvider = NotifierProvider<NavigationNotifier, int>(
+  NavigationNotifier.new,
+);

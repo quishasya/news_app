@@ -1,3 +1,5 @@
+import 'package:news_app/core/constants/news_category.dart';
+
 import '../models/article.dart';
 import '../services/news_api_service.dart';
 
@@ -12,8 +14,8 @@ class NewsRepository {
   
   final NewsApiService _apiService;
 
-  Future<List<Article>> getTopHeadlines(String category) async {
-    return _apiService.fetchTopHeadlines(category);
+  Future<List<Article>> getTopHeadlines(NewsCategory category) async {
+    return _apiService.fetchTopHeadlines(category.apiValue);
   }
 
   Future<List<Article>> searchArticles(String query) async {

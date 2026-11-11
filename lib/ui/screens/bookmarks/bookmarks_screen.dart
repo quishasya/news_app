@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/providers/bookmark_provider.dart';
 
-import '../../../../data/models/article.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/theme_toggle_button.dart';
 import 'widgets/bookmark_item.dart';
 
 /// TODO: Ubah BookmarksScreen menjadi ConsumerWidget
-class BookmarksScreen extends StatelessWidget {
+class BookmarksScreen extends ConsumerWidget {
   const BookmarksScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    // Menampilkan daftar kosong untuk sementara
-    final bookmarks = <Article>[];
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bookmarks = ref.watch(bookmarksProvider);
 
     return CustomScrollView(
       slivers: [

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/providers/search_provider.dart';
 
 /// TODO: Ubah SearchSuggestions menjadi ConsumerWidget
-class SearchSuggestions extends StatelessWidget {
+class SearchSuggestions extends ConsumerWidget {
   const SearchSuggestions({super.key});
 
   static const _topics = [
@@ -16,7 +18,7 @@ class SearchSuggestions extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
     return ListView(
@@ -33,7 +35,8 @@ class SearchSuggestions extends StatelessWidget {
                 avatar: const Icon(Icons.trending_up_rounded, size: 18),
                 label: Text(topic),
                 onPressed: () {
-                  // TODO: submit topik ke searchQueryProvider
+                  // submit topik ke searchQueryProvider
+                  ref.read(searchQueryProvider.notifier).submit(topic);
                 },
               ),
           ],

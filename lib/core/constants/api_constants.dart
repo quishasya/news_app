@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-// TODO 2: Setup API Constants
+// TODO 2: Setup API Constants -> menyimpan nilai nilai penting
 // 1. Definisikan baseUrl NewsAPI
 // 2. Buat getter untuk mengambil API Key dari dotenv
 // 3. Tentukan country (misal: 'us') dan language (misal: 'en')
@@ -14,7 +14,7 @@ class ApiConstants {
   static String get apiKey => (dotenv.maybeGet('NEWS_API_KEY') ?? '').trim();
 
   // untuk klasifikasi negara yang akan ditampilkan di top-headlines
-  static const String country = 'id';
+  static const String country = 'us';
   
   // bahasa yang akan ditampilkan ketika proses pencarian
   static const String language = 'en';
